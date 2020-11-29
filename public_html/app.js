@@ -10,7 +10,7 @@ const CORS = {
     'x-test,Content-Type,Accept, Access-Control-Allow-Headers',
 };
 
-export default myServer(express, bodyParser, createReadStream, crypto, http) {
+export function myServer(express, bodyParser, createReadStream, crypto, http) {
   const app = express();
 
   app.port = process.env.PORT || 4321;
@@ -52,5 +52,3 @@ export default myServer(express, bodyParser, createReadStream, crypto, http) {
   });
   return app;
 }
-
-export default myServer;
