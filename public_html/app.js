@@ -11,7 +11,7 @@ const CORS = {
     'x-test,Content-Type,Accept, Access-Control-Allow-Headers',
 };
 
-export function appSrc(express, bodyParser, createReadStream, crypto, http) {
+function appSrc(express, bodyParser, createReadStream, crypto, http) {
   const app = express();
 
   app.port = process.env.PORT || 4321;
@@ -30,7 +30,7 @@ export function appSrc(express, bodyParser, createReadStream, crypto, http) {
 
     .get('/login/', (req, res) => res.send('strax5'))
     .get('/code/', (req, res) => {
-      let filename = import.meta.url.substring(7);
+      let filename = import.meta.url.substring(8);
       createReadStream(filename).pipe(res);
     });
 
@@ -53,3 +53,5 @@ export function appSrc(express, bodyParser, createReadStream, crypto, http) {
   });
   return app;
 }
+
+export default myServer;
