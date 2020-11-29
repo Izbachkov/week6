@@ -5,7 +5,7 @@ const CORS = {
     'x-test,Content-Type,Accept, Access-Control-Allow-Headers',
 };
 
-function appSrc(express, bodyParser, createReadStream, crypto, http) {
+export function appSrc(express, bodyParser, createReadStream, crypto, http) {
   const app = express();
 
   app
@@ -50,5 +50,3 @@ function appSrc(express, bodyParser, createReadStream, crypto, http) {
   
   return app;
 }
-
-export default appSrc;
