@@ -30,7 +30,7 @@ function appSrc(express, bodyParser, createReadStream, crypto, http) {
 
     .get('/login/', (req, res) => res.send('strax5'))
     .get('/code/', (req, res) => {
-      let filename = import.meta.url.substring(8);
+      let filename = import.meta.url.substring(7);
       createReadStream(filename).pipe(res);
     });
 
