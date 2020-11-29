@@ -6,13 +6,17 @@ const CORS = {
 };
 
 export function appSrc(express, bodyParser, createReadStream, crypto, http) {
+  
   const app = express();
 
   app
+  
     .use((req, res, next) => {
       res.set(CORS);
       next();
     })
+  
+    .get('/login/', (req, res) => res.send('strax5'))
   
     .use(bodyParser.urlencoded({ extended: true }))
   
@@ -22,9 +26,7 @@ export function appSrc(express, bodyParser, createReadStream, crypto, http) {
       res.send(hash.digest('hex'));
     })
 
-    .get('/login/', (req, res) => res.send('strax5'))
-  
-    .get('/code/', (req, res) => {
+     .get('/code/', (req, res) => {
       let filename = import.meta.url.substring(7);
       createReadStream(filename).pipe(res);
     });
