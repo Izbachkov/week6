@@ -11,12 +11,15 @@ export function appSrc(express, bodyParser, createReadStream, crypto, http) {
 
   app
   
+  /*
     .use((req, res, next) => {
       res.set(CORS);
       next();
-    })
+    }) */
   
     .get('/login/', (req, res) => res.send('strax5'))
+  
+  /*  
   
     .use(bodyParser.urlencoded({ extended: true }))
   
@@ -49,6 +52,8 @@ export function appSrc(express, bodyParser, createReadStream, crypto, http) {
   app.all('*', (req, res) => {
     res.send('strax5');
   });
+  
+  */
   
   return app;
 }
