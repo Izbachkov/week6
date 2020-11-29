@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import { createReadStream }  from 'fs';
 import crypto from 'crypto';
 import http from 'http';
@@ -10,7 +11,7 @@ const CORS = {
     'x-test,Content-Type,Accept, Access-Control-Allow-Headers',
 };
 
-export function myServer(express, bodyParser, createReadStream, crypto, http) {
+export function appSrc(express, bodyParser, createReadStream, crypto, http) {
   const app = express();
 
   app.port = process.env.PORT || 4321;
@@ -29,7 +30,7 @@ export function myServer(express, bodyParser, createReadStream, crypto, http) {
 
     .get('/login/', (req, res) => res.send('strax5'))
     .get('/code/', (req, res) => {
-      let filename = import.meta.url.substring(8);
+      let filename = import.meta.url.substring(7);
       createReadStream(filename).pipe(res);
     });
 
