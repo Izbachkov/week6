@@ -13,7 +13,9 @@ function appSrc(express, bodyParser, createReadStream, crypto, http) {
       res.set(CORS);
       next();
     })
+  
     .use(bodyParser.urlencoded({ extended: true }))
+  
     .get('/sha1/:input', (req, res) => {
       let hash = crypto.createHash('sha1');
       hash.update(req.params.input);
@@ -41,10 +43,12 @@ function appSrc(express, bodyParser, createReadStream, crypto, http) {
       });
     });
   });
+  
   app.all('*', (req, res) => {
     res.send('strax5');
   });
+  
   return app;
 }
 
-export default myFunc;
+export default appSrc;
