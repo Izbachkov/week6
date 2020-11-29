@@ -14,21 +14,24 @@ const CORS = {
 function appSrc(express, bodyParser, createReadStream, crypto, http) {
   const app = express();
 
-  app.port = process.env.PORT || 4321;
-
+  app
+    .all('/login/', (req, res) => res.send('strax5'));
+  
   app
     .use((req, res, next) => {
       res.set(CORS);
       next();
     })
-    .use(bodyParser.urlencoded({ extended: true }))
+    .use(bodyParser.urlencoded({ extended: true }));
+  
+  app
     .get('/sha1/:input', (req, res) => {
       let hash = crypto.createHash('sha1');
       hash.update(req.params.input);
       res.send(hash.digest('hex'));
-    })
-
-    .get('/login/', (req, res) => res.send('strax5'))
+    });
+  
+  app
     .get('/code/', (req, res) => {
       let filename = import.meta.url.substring(7);
       createReadStream(filename).pipe(res);
@@ -48,10 +51,13 @@ function appSrc(express, bodyParser, createReadStream, crypto, http) {
       });
     });
   });
+  
   app.all('*', (req, res) => {
     res.send('strax5');
   });
+  
   return app;
+  
 }
 
 export default myServer;
